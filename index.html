@@ -2,7 +2,7 @@
 <title>c</title>
 <body onload=_(999)>
 <script>function _(n){
-d=document,c={},w=[],p=' ',u="",r=d.getElementById('x').innerHTML.split(/\s+/)
+d=document,c={},w=[],p=' ',r=d.getElementById('x').innerHTML.split(/\s+/)
 while(b=r.shift()){
   b+=p+r[0];
   (c[b]=c[b]||[]).push(b=r[1])
@@ -10,9 +10,8 @@ while(b=r.shift()){
 }
 while(--n){
   a=c[r[0]+p+(r[0]=r[1])]||w
-  u+=(r[1]=a[Math.random()*a.length|0])+p
+  d.write((r[1]=a[Math.random()*a.length|0])+p)
 }
-d.write(u)
 }
 </script>
 <script id=x type=text/plain>I
