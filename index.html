@@ -9,8 +9,7 @@ while(--l){
   w.push(b)
 }
 while(--n){
-  t=r[0]+p+(r[0]=r[1])
-  a=c[t]||w
+  a=c[r[0]+p+(r[0]=r[1])]||w
   u+=(r[1]=a[~~(Math.random()*a.length)])+p
 }
 d.write(u);
