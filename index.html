@@ -10,7 +10,7 @@ while(--l){
 }
 while(--n){
   a=c[r[0]+p+(r[0]=r[1])]||w
-  u+=(r[1]=a[~~(Math.random()*a.length)])+p
+  u+=(r[1]=a[Math.random()*a.length|0])+p
 }
 d.write(u)
 }
