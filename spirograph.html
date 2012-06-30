@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spirograph</title>
+  <script>
+    function spirograph(R, r, d, theta, ctx) {
+      var x = (R - r) * Math.cos(theta) + d * Math.cos((R - r) * theta / r);
+      var y = (R - r) * Math.sin(theta) - d * Math.sin((R - r) * theta / r);
+      var offset = 500;
+      ctx.lineTo(offset + x, offset + y);
+    }
+    function start() {
+      var canvas = document.getElementById('spiro');
+      canvas.width = canvas.height = 1000;
+      var ctx = canvas.getContext("2d");
+      setInterval(function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        var d = 10*Math.cos((+new Date) >> 6);
+
+        ctx.beginPath();
+        for (var i = 0; i < 360; i++) {
+          spirograph(100, 40 + d, 100, i, ctx);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }, 10);
+    }
+  </script>
+</head>
+<body onload="start()">
+  <canvas id="spiro"></canvas>
+</body>
+</html>
