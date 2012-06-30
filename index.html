@@ -1,19 +1,6 @@
 <!DOCTYPE html>
-<title>c</title>
-<body onload=_(999)>
-<script>function _(n){
-d=document,c={},w=[],p=' ',r=d.getElementById('x').innerHTML.split(/\s+/)
-while(b=r.shift()){
-  b+=p+r[0];
-  (c[b]=c[b]||[]).push(b=r[1])
-  w.push(b)
-}
-while(--n){
-  a=c[r[0]+p+(r[0]=r[1])]||w
-  d.write((r[1]=a[Math.random()*a.length|0])+p)
-}
-}
-</script>
+<title>300b Markov Chain</title>
+<body onload="d=document,c={},w=[],p=' ',r=d.getElementById('x').innerHTML.split(/\s+/),n=999;while(b=r.shift()){b+=p+r[0];(c[b]=c[b]||[]).push(b=r[1]);w.push(b)}while(--n){a=c[r[0]+p+(r[0]=r[1])]||w;d.write((r[1]=a[Math.random()*a.length|0])+p)}">
 <script id=x type=text/plain>I
 
 
