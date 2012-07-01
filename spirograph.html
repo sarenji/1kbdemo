@@ -2,33 +2,65 @@
 <html>
 <head>
   <title>Spirograph</title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+    canvas {
+      float: left;
+    }
+  </style>
   <script>
+    var canvas;
     function spirograph(R, r, d, theta, ctx) {
       var x = (R - r) * Math.cos(theta) + d * Math.cos((R - r) * theta / r);
       var y = (R - r) * Math.sin(theta) - d * Math.sin((R - r) * theta / r);
-      var offset = 500;
-      ctx.lineTo(offset + x, offset + y);
+      var offsetx = canvas.width / 2;
+      var offsety = canvas.height / 2;
+      if (theta === 0) {
+        ctx.moveTo(offsetx + x, offsety + y);
+      } else {
+        ctx.lineTo(offsetx + x, offsety + y);
+      }
     }
     function start() {
-      var canvas = document.getElementById('spiro');
-      canvas.width = canvas.height = 1000;
+      canvas = document.getElementById('spiro');
+      stretchToFit();
       var ctx = canvas.getContext("2d");
       setInterval(function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        var d = 10*Math.cos((+new Date) >> 6);
+        var t = Math.cos(getTime() / (Math.PI * 3600));
+        var d = Math.cos(getTime() / (750 + 250 * t));
+        var r = Math.sin(getTime() / (1000 * t));
 
         ctx.beginPath();
-        for (var i = 0; i < 360; i++) {
-          spirograph(100, 40 + d, 100, i, ctx);
+        for (var i = 0; i < 720; i++) {
+          spirograph(100 + 50 * r, 25 + 24 * d, 100, i, ctx);
         }
-        ctx.closePath();
         ctx.stroke();
-      }, 10);
+      }, 20);
+    }
+    function resize() {
+      if (canvas) {
+        stretchToFit();
+      }
+    }
+    function stretchToFit() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    function getTime() {
+      if (!getTime.firstTime) {
+        getTime.firstTime = +new Date;
+        return 0;
+      }
+      return (+new Date) - getTime.firstTime;
     }
   </script>
 </head>
-<body onload="start()">
+<body onload="start()" onresize="resize()">
   <canvas id="spiro"></canvas>
 </body>
 </html>
